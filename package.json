@@ -2,9 +2,12 @@
   "name": "backend-reserva-de-restaurante",
   "version": "1.0.0",
   "description": "Backend de um software desktop para reserva de restaurante",
-  "main": "src/index.ts",
+  "main": "src/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx tsx watch --env-file .env .",
+    "build": "rm -rf build && npx tsc",
+    "start": "node build/server.js",
+    "test": ""
   },
   "repository": {
     "type": "git",
