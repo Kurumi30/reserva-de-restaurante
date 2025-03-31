@@ -142,3 +142,7 @@ build/
 # Intern tests
 test/
 spec/
+
+# DB files
+*.db
+*.sqlite
