@@ -1,7 +1,7 @@
-import express, { NextFunction, Request, Response } from "express"
+import express from "express"
 import cors from "cors"
-import { BadRequestError, NotAuthorizedError, NotFoundError } from "./errors"
-import { handleErrorResponse } from "./services/handleErrorResponse"
+import { errorHandling } from "./services/errorHandling"
+import { NotFoundError } from "./errors"
 
 const app = express()
 
@@ -16,34 +16,14 @@ app.use(
 
 app.set("json spaces", 2)
 
-// app.use(routes)
-
-app.route("/").get((req, res) => {})
+app.route("/").get((req, res) => {
+	res.send("Hello, world!")
+})
 
 app.all("*", (req, res) => {
 	throw new NotFoundError(`Rota ${req.path} usando o método ${req.method} não foi encontrada!`)
 })
 
-app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
-	if (err instanceof NotFoundError) {
-		handleErrorResponse({ status: 404, err, res })
-
-		return
-	}
-
-	if (err instanceof NotAuthorizedError) {
-		handleErrorResponse({ status: 401, err, res })
-
-		return
-	}
-
-	if (err instanceof BadRequestError) {
-		handleErrorResponse({ status: 400, err, res })
-
-		return
-	}
-
-	handleErrorResponse({ status: 500, err, res })
-})
+app.use(errorHandling)
 
 export default app
