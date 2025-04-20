@@ -3,7 +3,7 @@
 	"extends": [],
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["node_modules", "dist", "build"]
+		"ignore": ["node_modules", "dist", "build", "test"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -19,7 +19,15 @@
 		"ignore": [],
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"style": {
+				"useImportType": "off",
+				"noUnusedTemplateLiteral": "off"
+			},
+			"complexity": {
+				"noForEach": "off",
+				"noStaticOnlyClass": "off"
+			}
 		}
 	},
 	"javascript": {
