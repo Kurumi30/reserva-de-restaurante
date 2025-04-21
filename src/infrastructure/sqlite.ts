@@ -1,4 +1,4 @@
-import { DatabaseSync, StatementResultingChanges } from "node:sqlite"
+import { DatabaseSync, StatementResultingChanges, SupportedValueType } from "node:sqlite"
 import { join } from "node:path"
 
 export class Database {
@@ -22,7 +22,7 @@ export class Database {
 
 	public async exec<T = unknown>(
 		sql: string,
-		values: (string | number)[] = [],
+		values: SupportedValueType[] = [],
 	): Promise<StatementResultingChanges | T> {
 		const query = this.db.prepare(sql)
 
