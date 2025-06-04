@@ -1,0 +1,41 @@
+{
+  "name": "backend-reserva-de-restaurante",
+  "version": "1.0.0",
+  "description": "Backend de um software desktop para reserva de restaurante",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "npx tsx watch --env-file .env .",
+    "build": "rm -rf build && npx tsc",
+    "start": "node build/server.js",
+    "format": "biome format --write ./src",
+    "lint": "biome lint --write ./src",
+    "check": "biome check --write ./src",
+    "sqlite": "tsx --experimental-sqlite test/sqlite.ts",
+    "test": "tsx "
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kurumi30/backend-reserva-de-restaurante"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "javascript",
+    "api",
+    "db"
+  ],
+  "author": "Kurumi30",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

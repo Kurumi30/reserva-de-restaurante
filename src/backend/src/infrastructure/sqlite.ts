@@ -1,5 +1,6 @@
-import { DatabaseSync, StatementResultingChanges, SupportedValueType } from "node:sqlite"
+import { DatabaseSync, SQLInputValue, StatementResultingChanges } from "node:sqlite"
 import { join } from "node:path"
+import { app } from "electron"
 
 export class Database {
 	private db: DatabaseSync
@@ -11,22 +12,24 @@ export class Database {
 			return
 		}
 
-		// Se não passar o caminho do arquivo, usa o padrão
-		this.db = new DatabaseSync(filePath || join(__dirname, "..", "db", "database.db"))
+		this.db = new DatabaseSync(
+			filePath ||
+			join(app.getPath("userData"), "database.db")
+			// || join(__dirname, "db", "database.db")
+		)
 	}
 
-	// Para criar as tabelas
 	public async migrate(migrationScript: string): Promise<void> {
 		this.db.exec(migrationScript)
 	}
 
 	public async exec<T = unknown>(
 		sql: string,
-		values: SupportedValueType[] = [],
+		values: SQLInputValue[] = [],
 	): Promise<StatementResultingChanges | T> {
 		const query = this.db.prepare(sql)
 
-		if (sql.toLowerCase().startsWith("select")) return query.all() as T
+		if (sql.toLowerCase().includes("select *")) return query.all() as T
 
 		return query.run(...values)
 	}

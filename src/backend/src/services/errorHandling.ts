@@ -14,19 +14,19 @@ export function errorHandling(err: Error, req: Request, res: Response, _: NextFu
 	if (err instanceof NotFoundError) {
 		handleErrorResponse({ status: 404, err, res })
 
-		return
+		// return
 	}
 
 	if (err instanceof NotAuthorizedError) {
 		handleErrorResponse({ status: 401, err, res })
 
-		return
+		// return
 	}
 
 	if (err instanceof BadRequestError) {
 		handleErrorResponse({ status: 400, err, res })
 
-		return
+		// return
 	}
 
 	handleErrorResponse({ status: 500, err, res })
