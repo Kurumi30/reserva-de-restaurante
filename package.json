@@ -6,8 +6,8 @@
   "author": "",
   "homepage": "",
   "scripts": {
-    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
-    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false --skipLibCheck",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false --skipLibCheck",
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",

@@ -10,7 +10,7 @@ function handleErrorResponse({ err, res, status }: IErrorResponse) {
 	})
 }
 
-export function errorHandling(err: Error, req: Request, res: Response, _: NextFunction) {
+export function errorHandling(err: Error, _req: Request, res: Response, _: NextFunction) {
 	if (err instanceof NotFoundError) {
 		handleErrorResponse({ status: 404, err, res })
 

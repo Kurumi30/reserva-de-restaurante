@@ -4,7 +4,7 @@ import { BadRequestError } from "../errors"
 import config from "../config"
 import { User } from "../types/IUser"
 
-export function authMiddleware(req: Request, res: Response, next: NextFunction) {
+export function authMiddleware(req: Request, _: Response, next: NextFunction) {
   const authHeader = req.headers.authorization
 
   if (!authHeader) next(new BadRequestError("Token não fornecido"))
