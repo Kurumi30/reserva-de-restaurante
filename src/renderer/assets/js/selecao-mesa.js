@@ -2,7 +2,9 @@ const totalMesas = 12
 
 let mesasIndisponiveis = []
 
-const notyf = new Notyf()
+const notyf = new Notyf({
+  duration: 5000,
+})
 
 let mesaSelecionada = null
 
@@ -17,33 +19,39 @@ async function buscarMesasIndisponiveis(dataHora) {
     method: 'GET',
   })
 
-  if (!resp.ok) notyf.error(resp.statusText)
+  if (!resp.ok) return // notyf.error(resp.statusText)
 
   return await resp.json()
 }
 
 async function atualizarMesasIndisponiveis(dataHora) {
   const resposta = await buscarMesasIndisponiveis(dataHora)
-  mesasIndisponiveis.push(resposta.ID_MESA)
+
+  if (Array.isArray(resposta)) {
+    mesasIndisponiveis = resposta.map(mesa => Number(mesa.ID_MESA))
+  } else if (resposta && resposta.ID_MESA) {
+    mesasIndisponiveis = [Number(resposta.ID_MESA)]
+  } else {
+    mesasIndisponiveis = []
+  }
+
   mesaGrid.innerHTML = ''
+
   gerarMesas()
 }
 
-// Exemplo de uso: chame quando data/hora mudar
 document.getElementById('data').addEventListener('change', function () {
   const data = this.value
   const horario = document.getElementById('horario').value
-  if (data && horario) {
-    atualizarMesasIndisponiveis(`${data} ${horario}`)
-  }
+
+  if (data && horario) atualizarMesasIndisponiveis(`${data} ${horario}`)
 })
 
 document.getElementById('horario').addEventListener('change', function () {
   const horario = this.value
   const data = document.getElementById('data').value
-  if (data && horario) {
-    atualizarMesasIndisponiveis(`${data} ${horario}`)
-  }
+
+  if (data && horario) atualizarMesasIndisponiveis(`${data} ${horario}`)
 })
 
 function gerarMesas() {
@@ -80,10 +88,6 @@ function selecionarMesa(mesa) {
   cadeirasContainer.style.display = 'block'
 }
 
-// function validarCPF(cpf) {
-//   return /^\d{11}$/.test(cpf)
-// }
-
 function resetarFormulario() {
   document.getElementById('formCadastro').reset()
 
@@ -107,8 +111,6 @@ document.getElementById('formCadastro').addEventListener('submit', function (e) 
 
   const reserva = { tableId: mesa, chairs: cadeiras, dateTime: `${data} ${horario}` }
 
-  console.log(reserva)
-
   fetch('http://localhost:3000/reserva', {
     method: 'POST',
     headers: {
@@ -122,13 +124,20 @@ document.getElementById('formCadastro').addEventListener('submit', function (e) 
 
       if (!response.ok) return notyf.error(json.error)
 
-      notyf.success(`Cadastro realizado com sucesso!\nMesa ${mesa} com ${cadeiras} cadeiras.`)
+      notyf.success(`Cadastro realizado com sucesso!\n\nMesa ${mesa} com ${cadeiras} cadeiras.`)
     })
     .catch(error => {
       notyf.error(`Erro ao cadastrar: ${error.message}`)
-    })  
+    })
 
   resetarFormulario()
 })
 
+function homepage() {
+  document.getElementById("home").addEventListener("click", () => {
+    location.href = "index.html"
+  })
+}
+
 gerarMesas()
+homepage()

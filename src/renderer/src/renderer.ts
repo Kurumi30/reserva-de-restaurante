@@ -1,31 +1,30 @@
-if (!localStorage.getItem('token')) location.href = '/login.html'
+setInterval(() => {
+  const token = localStorage.getItem('token')
 
-function init(): void {
-  window.addEventListener('DOMContentLoaded', () => {
-    versions()
-  })
+  if (!token) location.href = '/login.html'
+}, 1000)
 
-  // fetch("http://localhost:3000/mesas", { method: 'GET' })
-  //   .then(r => r.json())
-  //   .then(data => console.log(data))
-  //   .catch(err => console.error('Error fetching API:', err))
-}
+// function init(): void {
+//   window.addEventListener('DOMContentLoaded', () => {
+//     versions()
+//   })
+// }
 
-function versions(): void {
-  const versions = window.electron.process.versions
-  replaceText('.electron-version', `Electron v${versions.electron}`)
-  replaceText('.chrome-version', `Chromium v${versions.chrome}`)
-  replaceText('.node-version', `Node v${versions.node}`)
+// function versions(): void {
+//   const versions = window.electron.process.versions
+//   replaceText('.electron-version', `Electron v${versions.electron}`)
+//   replaceText('.chrome-version', `Chromium v${versions.chrome}`)
+//   replaceText('.node-version', `Node v${versions.node}`)
 
-  const ipcHandlerBtn = document.getElementById('ipcHandler')
-  ipcHandlerBtn?.addEventListener('click', () => {
-    window.electron.ipcRenderer.send('ping')
-  })
-}
+//   const ipcHandlerBtn = document.getElementById('ipcHandler')
+//   ipcHandlerBtn?.addEventListener('click', () => {
+//     window.electron.ipcRenderer.send('ping')
+//   })
+// }
 
-function replaceText(selector: string, text: string): void {
-  const element = document.querySelector<HTMLElement>(selector)
-  if (element) element.innerText = text
-}
+// function replaceText(selector: string, text: string): void {
+//   const element = document.querySelector<HTMLElement>(selector)
+//   if (element) element.innerText = text
+// }
 
-init()
+// init()

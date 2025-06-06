@@ -1,9 +1,9 @@
 {
   "name": "reserva-restaurante",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Reserva de restaurante versão desktop",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "",
   "homepage": "",
   "scripts": {
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
@@ -45,5 +45,17 @@
       "electron",
       "esbuild"
     ]
+  },
+  "build": {
+    "productName": "Reserva de Restaurante",
+    "win": {
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "icon": "build/icon.icns"
+    },
+    "linux": {
+      "icon": "build/icon.png"
+    }
   }
 }

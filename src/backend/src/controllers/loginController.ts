@@ -3,17 +3,13 @@ import { UserModel } from "../models/userModel"
 import jwt from "jsonwebtoken"
 import { NotAuthorizedError } from "../errors"
 import config from "../config"
-
-type User = {
-  EMAIL: string
-  SENHA: string
-}
+import { UserPayload } from "../types/IUser"
 
 export async function loginController(req: Request, res: Response, next: NextFunction) {
   try {
     const { email, password } = req.body
     const userModel = new UserModel()
-    const users = await userModel.getUsers() as Array<User>
+    const users = await userModel.getUsers() as Array<UserPayload>
 
     const user = users.find(user => user.EMAIL === email)
 

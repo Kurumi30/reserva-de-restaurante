@@ -9,11 +9,11 @@
 
   <title>Seleção de Mesa</title>
 
-  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./assets/css/selecao-mesa.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
-  <script src="./assets/selecao-mesa.js" defer></script>
+  <script src="./assets/js/selecao-mesa.js" defer></script>
 
 </head>
 
@@ -21,38 +21,31 @@
   <h1>Seleção de Mesa</h1>
 
   <form id="formCadastro">
-    <!-- <label>Nome Completo:
-      <input type="text" id="nome" required>
-    </label> -->
-
-    <!-- <label>CPF:
-      <input type="text" id="cpf" required>
-    </label> -->
-
     <label>Data
       <input type="date" id="data" required>
 
-    <label>Horário
-      <input type="time" id="horario" required>
-    </label>
-
-    <div class="mesa-grid" id="mesaGrid"></div>
-
-    <div class="cadeiras-select" id="cadeirasContainer" style="display: none;">
-      <label>Quantidade de Cadeiras:
-        <select id="cadeiras">
-          <option value="">Selecione</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
+      <label>Horário
+        <input type="time" id="horario" required>
       </label>
-    </div>
 
-    <button type="submit" class="submit-btn">Finalizar Cadastro</button>
+      <div class="mesa-grid" id="mesaGrid"></div>
+
+      <div class="cadeiras-select" id="cadeirasContainer" style="display: none;">
+        <label>Quantidade de Cadeiras:
+          <select id="cadeiras">
+            <option value="">Selecione</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn">Finalizar Cadastro</button>
+      <button type="button" class="reset-btn" id="home">Página inicial</button>
   </form>
 
   <script src="./src/renderer.ts"></script>

@@ -1,11 +1,5 @@
 import { Database } from "../infrastructure/sqlite"
-
-interface UserPayload {
-  cpf: string
-  name: string
-  email: string
-  password: string
-}
+import { UserInfo } from "../types/IUser"
 
 export class UserModel {
   private db: Database
@@ -15,7 +9,7 @@ export class UserModel {
     this.db.connect()
   }
 
-  async createUser(payload: UserPayload) {
+  async createUser(payload: UserInfo) {
     const { cpf, email, name, password } = payload
 
     return this.db.exec(

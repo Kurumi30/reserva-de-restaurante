@@ -14,7 +14,6 @@ async function loadReservation() {
     const notyf = new Notyf()
 
     notyf.error(`Erro ao carregar as reservas: ${resp.statusText}`)
-    // throw new Error("Erro ao carregar as reservas")
   }
 
   const reservas = await resp.json()
@@ -22,14 +21,13 @@ async function loadReservation() {
   for (let i = 0; i < reservas.length; i++) {
     const newRow = document.createElement("tr")
 
-    const statusOptions = ["Confirmada", "Pendente", "Cancelada"]
+    const statusOptions = ["Pendente", "Confirmada", "Cancelada"]
       .map(
         status =>
           `<option value="${status}" ${reservas[i].status === status ? "selected" : ""}>${status || "Sem status"}</option>`
       )
       .join("")
 
-    // <td data-title="ID">${i + 1}</td>
     newRow.innerHTML = `
     <td data-title="ID">${reservas[i].ID_RESERVA}</td>
 		<th scope="row">${reservas[i].NOME}</th>
@@ -65,5 +63,10 @@ async function loadReservation() {
     updateColor()
   })
 }
+
+document.getElementById("back-button").addEventListener("click", () => {
+  // history.back()
+  location.href = "index.html"
+})
 
 onload = loadReservation

@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -70,6 +70,15 @@ app.whenReady().then(() => {
 
       return { status: 500, data: { error: errorMessage } }
     }
+  })
+
+  ipcMain.handle('user-created', async () => {
+    await dialog.showMessageBox({
+      type: 'info',
+      title: 'Usuário criado',
+      message: 'Cadastro realizado com sucesso!',
+      buttons: ['OK'],
+    })
   })
 
   createWindow()

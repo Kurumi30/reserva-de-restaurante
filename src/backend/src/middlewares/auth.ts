@@ -2,19 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import jwt from "jsonwebtoken"
 import { BadRequestError } from "../errors"
 import config from "../config"
-
-type User = {
-  email: string
-  cpf: string
-}
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: User
-    }
-  }
-}
+import { User } from "../types/IUser"
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization

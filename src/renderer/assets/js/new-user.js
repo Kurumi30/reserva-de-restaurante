@@ -32,7 +32,8 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
     return
   }
 
-  alert('Usuário criado com sucesso!')
+  // alert('Usuário criado com sucesso!')
+  await window.electronAPI.showUserDialog()
 
   // document.getElementById('loginForm').reset()
   location.href = 'index.html'

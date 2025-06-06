@@ -1,25 +1,16 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { UserInfo } from '../backend/src/types/IUser'
 
-interface IBodyData {
-  name: string
-  email: string
-  cpf: string
-  password: string
-}
-
-// Custom APIs for renderer
 const api = {}
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
 if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
     contextBridge.exposeInMainWorld('electronAPI', {
-      createUser: (bodyData: IBodyData) => ipcRenderer.invoke('cria-usuario', bodyData)
+      createUser: (bodyData: UserInfo) => ipcRenderer.invoke('cria-usuario', bodyData),
+      showUserDialog: () => ipcRenderer.invoke('user-created')
     })
     contextBridge.exposeInMainWorld('auth', {
       login: async (email: string, password: string) => {
@@ -33,13 +24,13 @@ if (process.contextIsolated) {
         const data = await response.json()
 
         if (!response.ok) throw new Error(data.message || 'Erro ao fazer login')
-          
+
         return { token: data.token, NOME: data.NOME }
       }
     })
-} catch (error) {
-  console.error(error)
-}
+  } catch (error) {
+    console.error(error)
+  }
 } else {
   // @ts-ignore (define in dts)
   window.electron = electronAPI

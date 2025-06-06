@@ -20,3 +20,10 @@ export async function userController(req: Request, res: Response) {
     res.status(500).json({ error: "Erro ao criar usuário" })
   }
 }
+
+export async function listAllUsers(_: Request, res: Response) {
+  const userModel = new UserModel()
+  const usersList = await userModel.getUsers()
+
+  res.json(usersList)
+}
