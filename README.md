@@ -163,3 +163,19 @@ Utilizado para lint, formatação e organização automática do código. O Biom
 Para acessar o painel administrativo, utilize as seguintes credenciais:
 - **Email**: admin@email.com
 - **Senha**: admin123
+
+<details>
+  <summary>Clique para ver as imagens do sistema</summary>
+
+  ![image-1](https://github.com/user-attachments/assets/1b1eac7f-e715-4cb7-a0e0-3abdb68c02fb)
+  ![image-2](https://github.com/user-attachments/assets/9eb1891b-e51d-42ba-bc98-14f5d16948dd)
+  ![image-3](https://github.com/user-attachments/assets/0976842b-9c20-44b5-8a72-7482e1e8ca30)
+  ![image-4](https://github.com/user-attachments/assets/cf803651-b68b-498e-8672-3c1a1433da69)
+  ![image-5](https://github.com/user-attachments/assets/a26c3342-5313-4e91-8a5c-ec3220ba5692)
+  ![image-6](https://github.com/user-attachments/assets/b610c589-b282-424b-9403-dcfe339d4f22)
+  ![image-7](https://github.com/user-attachments/assets/fa3a6298-1b1c-4522-ba02-54d9ef032d07)
+  ![image-8](https://github.com/user-attachments/assets/c5716918-0552-4ba7-919e-5b7d2167a7e7)
+  ![image-9](https://github.com/user-attachments/assets/ae2fe742-5468-40ef-9140-2724bc9250e4)
+  ![image-10](https://github.com/user-attachments/assets/309cdd60-83b1-45ad-b573-57d370c34db3)
+
+</details>
