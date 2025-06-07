@@ -1,34 +1,155 @@
-# reserva-restaurante
+# Reserva de Restaurante feito pela Katech
 
-A minimal Electron application with TypeScript
+Aplicação desktop para reserva de mesas em restaurante, desenvolvida com Electron, TypeScript, Express e SQLite (nativa do NodeJS). O sistema possui interface gráfica, autenticação de usuários, cadastro de reservas, painel administrativo e integração entre frontend e backend.
 
-## Recommended IDE Setup
+## Índice
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Visão Geral](#visão-geral)
+- [Funcionalidades](#funcionalidades)
+- [Requisitos](#requisitos)
+- [Instalação](#instalação)
+- [Scripts Disponíveis](#scripts-disponíveis)
+- [Como Rodar em Desenvolvimento](#como-rodar-em-desenvolvimento)
+- [Como Gerar Build](#como-gerar-build)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+- [Estrutura do Backend](#estrutura-do-backend)
+- [Principais Componentes](#principais-componentes)
+- [Observações](#observações)
+- [Detalhes Técnicos](#detalhes-técnicos)
 
-## Project Setup
+## Visão Geral
 
-### Install
+O **reserva-restaurante** é uma solução desktop para gerenciamento de reservas em restaurantes. Permite que clientes realizem reservas de mesas, consultem disponibilidade, e que administradores acompanhem e gerenciem todas as reservas.
+
+A aplicação é composta por:
+
+- **Frontend**: Interface gráfica construída com HTML, CSS, JavaScript, Bootstrap e Electron.
+- **Backend**: API RESTful desenvolvida em Node.js/Express, com persistência de dados através do SQLite.
+
+## Funcionalidades
+
+- Cadastro e login de usuários.
+- Máscara de CPF e validação de dados.
+- Seleção de data, horário, mesa e quantidade de cadeiras.
+- Visualização de mesas disponíveis e indisponíveis.
+- Painel administrativo para visualização e alteração do status das reservas.
+- Notificações de sucesso e erro (usando a biblioteca Notyf).
+- Integração segura entre frontend e backend via Electron IPC e API REST.
+
+## Requisitos
+
+- [Node.js](https://nodejs.org/) (recomendado v20+)
+- [pnpm](https://pnpm.io/) (gerenciador de pacotes)
+- [Git](https://git-scm.com/) (opcional, para clonar o repositório)
+
+## Instalação
+
+Clone o repositório e instale as dependências:
 
 ```bash
-$ pnpm install
+git clone https://github.com/Kurumi30/reserva-de-restaurante.git
+cd reserva-de-restaurante
+pnpm install
 ```
 
-### Development
+## Scripts Disponíveis
+
+- `pnpm dev`: Inicia o ambiente de desenvolvimento com hot reload.
+- `pnpm build`: Realiza a checagem de tipos e gera o build de produção.
+- `pnpm build:win`: Gera build para Windows.
+- `pnpm build:mac`: Gera build para macOS.
+- `pnpm build:linux`: Gera build para Linux.
+- `pnpm typecheck`: Checagem de tipos para Node e Web.
+- `pnpm start`: Inicia a aplicação em modo preview (Electron).
+
+## Como Rodar em Desenvolvimento
+
+Execute o comando abaixo para iniciar a aplicação em modo desenvolvimento:
 
 ```bash
-$ pnpm dev
+pnpm dev
 ```
 
-### Build
+A aplicação será aberta em uma janela Electron, conectando o frontend ao backend local.
+
+## Como Gerar Build
+
+> **Atenção:** Atualmente, o processo de build não está funcionando corretamente. Foi tentado diversas abordagens, mas ainda não foi possível resolver o problema. Abaixo estão os comandos que deveriam ser utilizados para gerar o executável, mas eles podem não funcionar como esperado.
+
+Para gerar o executável da aplicação, utilize um dos comandos abaixo conforme seu sistema operacional:
 
 ```bash
-# For windows
-$ pnpm build:win
+# Para Windows
+pnpm build:win
 
-# For macOS
-$ pnpm build:mac
+# Para macOS
+pnpm build:mac
 
-# For Linux
-$ pnpm build:linux
+# Para Linux
+pnpm build:linux
 ```
+
+Os arquivos de build serão gerados na pasta `dist/` ou conforme configuração do Electron Builder.
+
+## Estrutura de Pastas
+
+├── src/
+│   ├── backend/         # Backend Express + SQLite
+│   ├── main/            # Processo principal do Electron
+│   ├── preload/         # Preload scripts para comunicação segura
+│   └── renderer/        # Frontend (HTML, CSS, JS)
+├── build/               # Arquivos de build e ícones
+├── resources/           # Recursos estáticos
+├── package.json         # Configuração do projeto
+├── electron-builder.yml # Configuração do Electron Builder
+└──
+
+## Estrutura do Backend
+
+Foi desenvolvido com o mínimo de dependências possível, priorizando simplicidade, segurança e facilidade de manutenção.
+
+O backend está localizado em [`src/backend`](src/backend) e segue uma arquitetura modular, separando responsabilidades em diferentes camadas para facilitar manutenção e escalabilidade. Abaixo estão os principais diretórios e arquivos:
+
+```
+src/backend/
+├── src/
+│   ├── app.ts                # Inicialização do Express, middlewares e rotas principais
+│   ├── server.ts             # Ponto de entrada do servidor HTTP
+│   ├── controllers/          # Controllers responsáveis pela lógica das rotas
+│   ├── models/               # Models para acesso e manipulação dos dados no banco
+│   ├── routes/               # Definição das rotas da API (ex: routes.ts)
+│   ├── infrastructure/       # Scripts de infraestrutura, como seed e conexão com o banco
+│   ├── services/             # Serviços auxiliares
+│   ├── errors/               # Definição de erros customizados
+│   └── ...                   # Outros utilitários e middlewares
+├── package.json              # Dependências e scripts do backend
+├── tsconfig.json             # Configuração TypeScript do backend
+└── LICENSE                   # Licença do backend
+```
+
+# BiomeJS
+Utilizado para lint, formatação e organização automática do código. O Biome substitui ferramentas como ESLint e Prettier, garantindo padronização e qualidade do código. As regras estão configuradas no arquivo `biome.json`.
+
+### Principais Componentes
+
+- **Controllers**: Responsáveis por receber as requisições, validar dados e chamar os models.
+- **Models**: Realizam operações no banco de dados SQLite, como criação, consulta e atualização de reservas, usuários e mesas.
+- **Routes**: Centralizam as rotas da API RESTful, conectando endpoints aos controllers.
+- **Infrastructure**: Scripts para criação e seed do banco de dados, como [`seed.ts`](src/backend/src/infrastructure/seed.ts), que cria as tabelas e popula dados iniciais.
+- **Services**: Middlewares e utilitários, como tratamento global de erros.
+- **Autenticação**: Utiliza JWT para proteger rotas sensíveis, garantindo que apenas usuários autenticados possam realizar certas operações.
+- **Validação**: Validação de dados de entrada e tratamento de erros personalizados.
+
+### Observações
+
+- O backend é totalmente desacoplado do frontend, comunicando-se via API REST e Electron IPC. Ele inicia junto com a execução do Electron.
+- O banco de dados SQLite é inicializado automaticamente.
+- O código é escrito em TypeScript, garantindo tipagem e maior segurança.
+
+## Detalhes Técnicos
+
+- **Backend**: O backend Express está em [`src/backend`](src/backend), com rotas, controllers e models para usuários, mesas e reservas. O banco de dados é inicializado automaticamente na primeira execução.
+- **Frontend**: A interface está em [`src/renderer`](src/renderer), com páginas para login, cadastro, seleção de mesa e dashboard administrativo.
+- **IPC**: Comunicação entre frontend e backend via Electron IPC para operações sensíveis.
+- **Validação**: Máscara de CPF, validação de campos obrigatórios e feedback visual com Notyf.
+- **Segurança**: Uso de tokens JWT para autenticação nas rotas protegidas do backend.
