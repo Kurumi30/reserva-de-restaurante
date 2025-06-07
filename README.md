@@ -115,7 +115,7 @@ Foi desenvolvido com o mínimo de dependências possível, priorizando simplicid
 
 O backend está localizado em [`src/backend`](src/backend) e segue uma arquitetura modular, separando responsabilidades em diferentes camadas para facilitar manutenção e escalabilidade. Abaixo estão os principais diretórios e arquivos:
 
-```
+```text
 src/backend/
 ├── src/
 │   ├── app.ts                # Inicialização do Express, middlewares e rotas principais
