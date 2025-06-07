@@ -3,6 +3,7 @@ productName: reserva-restaurante
 directories:
   buildResources: build
 files:
+  - 'out/renderer/**'
   - '!**/.vscode/*'
   - '!src/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
