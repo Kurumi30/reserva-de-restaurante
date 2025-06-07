@@ -99,15 +99,14 @@ Os arquivos de build serão gerados na pasta `dist/` ou conforme configuração 
 ## Estrutura de Pastas
 
 ├── src/
-│   ├── backend/         # Backend Express + SQLite
-│   ├── main/            # Processo principal do Electron
-│   ├── preload/         # Preload scripts para comunicação segura
-│   └── renderer/        # Frontend (HTML, CSS, JS)
-├── build/               # Arquivos de build e ícones
-├── resources/           # Recursos estáticos
-├── package.json         # Configuração do projeto
-├── electron-builder.yml # Configuração do Electron Builder
-└──
+│   ├── backend/           # Backend Express + SQLite
+│   ├── main/              # Processo principal do Electron
+│   ├── preload/           # Preload scripts para comunicação segura
+│   └── renderer/          # Frontend (HTML, CSS, JS)
+├── build/                 # Arquivos de build e ícones
+├── resources/             # Recursos estáticos
+├── package.json           # Configuração do projeto
+└── electron-builder.yml   # Configuração do Electron Builder
 
 ## Estrutura do Backend
 
