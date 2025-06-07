@@ -2,6 +2,10 @@
 
 Aplicação desktop para reserva de mesas em restaurante, desenvolvida com Electron, TypeScript, Express e SQLite (nativa do NodeJS). O sistema possui interface gráfica, autenticação de usuários, cadastro de reservas, painel administrativo e integração entre frontend e backend.
 
+## O que é Electron?
+
+O Electron é uma tecnologia que permite criar aplicativos desktop usando HTML, CSS e JavaScript. Com ele, é possível desenvolver programas para Windows, macOS e Linux utilizando as mesmas ferramentas da web, mas com acesso a recursos do sistema operacional, como arquivos, menus e notificações.
+
 ## Índice
 
 - [Visão Geral](#visão-geral)
@@ -16,6 +20,7 @@ Aplicação desktop para reserva de mesas em restaurante, desenvolvida com Elect
 - [Principais Componentes](#principais-componentes)
 - [Observações](#observações)
 - [Detalhes Técnicos](#detalhes-técnicos)
+- [Acesso Administrativo](#acesso-administrativo)
 
 ## Visão Geral
 
@@ -127,7 +132,7 @@ src/backend/
 └── LICENSE                   # Licença do backend
 ```
 
-# BiomeJS
+## BiomeJS
 Utilizado para lint, formatação e organização automática do código. O Biome substitui ferramentas como ESLint e Prettier, garantindo padronização e qualidade do código. As regras estão configuradas no arquivo `biome.json`.
 
 ### Principais Componentes
@@ -153,3 +158,8 @@ Utilizado para lint, formatação e organização automática do código. O Biom
 - **IPC**: Comunicação entre frontend e backend via Electron IPC para operações sensíveis.
 - **Validação**: Máscara de CPF, validação de campos obrigatórios e feedback visual com Notyf.
 - **Segurança**: Uso de tokens JWT para autenticação nas rotas protegidas do backend.
+
+## Acesso Administrativo
+Para acessar o painel administrativo, utilize as seguintes credenciais:
+- **Email**: admin@email.com
+- **Senha**: admin123
