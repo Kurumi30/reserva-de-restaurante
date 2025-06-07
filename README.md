@@ -151,6 +151,7 @@ Utilizado para lint, formatação e organização automática do código. O Biom
 - O backend é totalmente desacoplado do frontend, comunicando-se via API REST e Electron IPC. Ele inicia junto com a execução do Electron.
 - O banco de dados SQLite é inicializado automaticamente.
 - O código é escrito em TypeScript, garantindo tipagem e maior segurança.
+- O `database.db` fica salvo no caminho `C:\Users\USER\AppData\Roaming\reserva-restaurante`
 
 ## Detalhes Técnicos
 
