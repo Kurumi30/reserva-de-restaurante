@@ -122,7 +122,7 @@ src/backend/
 │   ├── server.ts             # Ponto de entrada do servidor HTTP
 │   ├── controllers/          # Controllers responsáveis pela lógica das rotas
 │   ├── models/               # Models para acesso e manipulação dos dados no banco
-│   ├── routes/               # Definição das rotas da API (ex: routes.ts)
+│   ├── routes/               # Definição das rotas da API
 │   ├── infrastructure/       # Scripts de infraestrutura, como seed e conexão com o banco
 │   ├── services/             # Serviços auxiliares
 │   ├── errors/               # Definição de erros customizados
